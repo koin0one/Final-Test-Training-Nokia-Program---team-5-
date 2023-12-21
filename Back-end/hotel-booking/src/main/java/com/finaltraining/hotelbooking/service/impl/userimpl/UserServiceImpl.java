@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserEntityRepository m_userUserEntityRepository;
 
     @Autowired
-    private RoleEntityRepository m_rolRoleEntityRepository;
+    private RoleEntityRepository m_roleEntityRepository;
 
     @Autowired
     private ConvertUser m_converUser;
