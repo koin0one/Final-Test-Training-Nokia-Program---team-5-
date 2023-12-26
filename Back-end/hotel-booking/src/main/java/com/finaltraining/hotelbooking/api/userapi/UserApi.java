@@ -24,7 +24,7 @@ public class UserApi {
             m_userService.AddUser(userEntityDto);
             return ResponseEntity.ok("User is added!");
         } catch (Exception e){
-            return ResponseEntity.badRequest().body("User can't added!");
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 

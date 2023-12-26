@@ -28,7 +28,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void AddUser(UserEntityDto user) {
         UserEntity userEntity = m_converUser.convertToDatabaseColumn(user);
-        m_userUserEntityRepository.save(userEntity);
+        if (m_userUserEntityRepository.findByUserName(userEntity.getUserName()) != null) {
+            throw new RuntimeException("User already exists!");
+        } else {
+            m_userUserEntityRepository.save(userEntity);
+        }
     }
 
     @Override
