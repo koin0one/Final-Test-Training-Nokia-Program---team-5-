@@ -1,18 +1,10 @@
 package com.finaltraining.hotelbooking.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "user_entity")
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", nullable = false)
-    private UUID id;
+public class UserEntity extends BaseEntity{
 
     @Column(name = "username", nullable = false, unique = true)
     private String userName;
@@ -44,14 +36,6 @@ public class UserEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_Id", nullable = true)
     private RoleEntity role;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;
