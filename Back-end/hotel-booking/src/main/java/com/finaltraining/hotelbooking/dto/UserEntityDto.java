@@ -11,6 +11,7 @@ import java.util.UUID;
 public class UserEntityDto{
     private UUID id;
     private String userName;
+    private String passWord;
     private String firstName;
     private String lastName;
     private Boolean gender;
@@ -19,7 +20,7 @@ public class UserEntityDto{
     private Long phoneNumber;
     private String address;
     private Long pinCode;
-    private RoleEntity role;
+    private UUID roleId;
 
     public UUID getId() {
         return id;
@@ -35,6 +36,15 @@ public class UserEntityDto{
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public String getFirstName() {
@@ -101,12 +111,12 @@ public class UserEntityDto{
         this.pinCode = pinCode;
     }
 
-    public RoleEntity getRole() {
-        return role;
+    public UUID getRoleId() {
+        return roleId;
     }
 
-    public void setRole(RoleEntity role) {
-        this.role = role;
+    public void setRoleId(UUID roleId) {
+        this.roleId = roleId;
     }
 
     @Override
@@ -122,13 +132,12 @@ public class UserEntityDto{
                 Objects.equals(this.email, entity.email) &&
                 Objects.equals(this.phoneNumber, entity.phoneNumber) &&
                 Objects.equals(this.address, entity.address) &&
-                Objects.equals(this.pinCode, entity.pinCode) &&
-                Objects.equals(this.role, entity.role);
+                Objects.equals(this.pinCode, entity.pinCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, gender, age, email, phoneNumber, address, pinCode, role);
+        return Objects.hash(id, firstName, lastName, gender, age, email, phoneNumber, address, pinCode);
     }
 
     @Override
@@ -142,7 +151,6 @@ public class UserEntityDto{
                 "email = " + email + ", " +
                 "phoneNumber = " + phoneNumber + ", " +
                 "address = " + address + ", " +
-                "pinCode = " + pinCode + ", " +
-                "role = " + role + ")";
+                "pinCode = " + pinCode + ", ";
     }
 }

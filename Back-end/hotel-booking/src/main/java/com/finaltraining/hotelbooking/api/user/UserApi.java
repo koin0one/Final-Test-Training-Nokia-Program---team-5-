@@ -1,4 +1,4 @@
-package com.finaltraining.hotelbooking.api.userapi;
+package com.finaltraining.hotelbooking.api.user;
 
 import com.finaltraining.hotelbooking.dto.UserEntityDto;
 import com.finaltraining.hotelbooking.service.UserService;
@@ -63,6 +63,16 @@ public class UserApi {
             }
         } catch (NullPointerException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Can not found user!");
+        }
+    }
+
+    @RequestMapping(value = "/update-user", method = RequestMethod.PUT)
+    public ResponseEntity updateUserById(@RequestBody UserEntityDto userEntityDto){
+        try {
+            m_userService.updateUserById(userEntityDto);
+            return ResponseEntity.ok("User is updated!");
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 

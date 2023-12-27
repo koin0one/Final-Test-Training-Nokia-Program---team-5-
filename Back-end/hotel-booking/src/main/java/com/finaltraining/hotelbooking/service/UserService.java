@@ -14,4 +14,10 @@ public interface UserService {
     UserEntityDto findUserById(UUID id);
 
     UserEntityDto findUserByUserName(String userName);
+
+    UserEntityDto updateUserById(UserEntityDto userEntityDto);
+
+    void deleteUserById(UUID id);
+
+    void deleteUserByUserName(String username);
 }

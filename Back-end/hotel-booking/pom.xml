@@ -20,6 +20,8 @@
 		<java.version>17</java.version>
 		<springframework.version>3.2.0</springframework.version>
 		<mysql.version>8.0.28</mysql.version>
+		<fasterxml.jackson.version>2.15.3</fasterxml.jackson.version>
+		<codehaus.jackson.version>1.9.13</codehaus.jackson.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -58,6 +60,39 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<!-- Json -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${codehaus.jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${codehaus.jackson.version}</version>
+		</dependency>
+		<!--end json -->
 		<!-- Mysql -->
 		<dependency>
 			<groupId>mysql</groupId>

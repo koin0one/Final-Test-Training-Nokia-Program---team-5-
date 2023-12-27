@@ -2,12 +2,17 @@ package com.finaltraining.hotelbooking.entity;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "user_entity")
 public class UserEntity extends BaseEntity{
 
     @Column(name = "username", nullable = false, unique = true)
     private String userName;
+
+    @Column(name = "password", nullable = false)
+    private String passWord;
 
     @Column(name = "first_name")
     private String firstName;
@@ -43,6 +48,14 @@ public class UserEntity extends BaseEntity{
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public String getFirstName() {

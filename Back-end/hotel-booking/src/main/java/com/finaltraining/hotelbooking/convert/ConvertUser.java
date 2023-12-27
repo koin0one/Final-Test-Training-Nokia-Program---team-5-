@@ -20,7 +20,6 @@ public class ConvertUser implements AttributeConverter<UserEntityDto, UserEntity
         userEntity.setAddress(userEntityDto.getAddress());
         userEntity.setPhoneNumber(userEntityDto.getPhoneNumber());
         userEntity.setPinCode(userEntityDto.getPinCode());
-        userEntity.setRole(userEntityDto.getRole());
         return userEntity;
     }
 
@@ -37,7 +36,6 @@ public class ConvertUser implements AttributeConverter<UserEntityDto, UserEntity
         userEntityDto.setAddress(userEntity.getAddress());
         userEntityDto.setPhoneNumber(userEntity.getPhoneNumber());
         userEntityDto.setPinCode(userEntity.getPinCode());
-        userEntityDto.setRole(userEntity.getRole());
         return userEntityDto;
     }
 }
