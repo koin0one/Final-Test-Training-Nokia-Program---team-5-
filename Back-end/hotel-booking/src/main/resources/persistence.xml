@@ -3,5 +3,9 @@
     <persistence-unit name="persistence-data">
         <class>com.finaltraining.hotelbooking.entity.UserEntity</class>
         <class>com.finaltraining.hotelbooking.entity.RoleEntity</class>
+        <class>com.finaltraining.hotelbooking.entity.HotelEntity</class>
+        <class>com.finaltraining.hotelbooking.entity.RoomTypeEntity</class>
+        <class>com.finaltraining.hotelbooking.entity.RoomEntity</class>
+        <class>com.finaltraining.hotelbooking.entity.BookingEntity</class>
     </persistence-unit>
 </persistence>
