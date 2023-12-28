@@ -21,7 +21,7 @@ public class UserApi {
     @RequestMapping(value = "/add-user", method = RequestMethod.POST)
     public ResponseEntity addUser(@RequestBody UserEntityDto userEntityDto){
         try {
-            m_userService.AddUser(userEntityDto);
+            m_userService.addUser(userEntityDto);
             return ResponseEntity.ok("User is added!");
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

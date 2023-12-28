@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
-    void AddUser(UserEntityDto user);
+    void addUser(UserEntityDto userEntityDto);
 
     List<UserEntityDto> findAllUser();
 
@@ -20,5 +20,5 @@ public interface UserService {
 
     void deleteUserById(UUID id);
 
-    void deleteUserByUserName(String username);
+    void deleteUserByUserName(String userName);
 }

@@ -48,7 +48,7 @@ public class LoginApi {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity register(@RequestBody UserEntityDto userEntityDto){
         try {
-            m_userService.AddUser(userEntityDto);
+            m_userService.addUser(userEntityDto);
             return ResponseEntity.ok("Registered Successfully");
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

@@ -25,15 +25,15 @@ public class UserServiceImpl implements UserService {
     private RoleEntityRepository m_roleRepository;
 
     @Autowired
-    private ConvertUser m_converUser;
+    private ConvertUser m_convertUser;
 
     private final String GUEST_ROLE_NAME = "guest";
 
     private final String DELETE_ERROR_MESSAGE = "This user cannot be deleted";
 
     @Override
-    public void AddUser(UserEntityDto userEntityDto) {
-        UserEntity userEntity = m_converUser.convertToDatabaseColumn(userEntityDto);
+    public void addUser(UserEntityDto userEntityDto) {
+        UserEntity userEntity = m_convertUser.convertToDatabaseColumn(userEntityDto);
         if (m_userEntityRepository.findByUserName(userEntity.getUserName()) != null) {
             throw new RuntimeException("Username is already in use");
         } else {
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
         List<UserEntity> listUserEntity = m_userEntityRepository.findAll();
         for (UserEntity userEntity : listUserEntity){
             if (userEntity != null){
-                UserEntityDto userEntityDto = m_converUser.convertToEntityAttribute(userEntity);
+                UserEntityDto userEntityDto = m_convertUser.convertToEntityAttribute(userEntity);
                 userEntityDto.setRoleId(userEntity.getRole().getId());
                 listUserDto.add(userEntityDto);
             }
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntityDto findUserById(UUID id) {
         UserEntity userEntity = m_userEntityRepository.findById(id);
-        UserEntityDto userEntityDto = m_converUser.convertToEntityAttribute(userEntity);
+        UserEntityDto userEntityDto = m_convertUser.convertToEntityAttribute(userEntity);
         userEntityDto.setRoleId(userEntity.getRole().getId());
         return userEntityDto;
     }
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntityDto findUserByUserName(String userName) {
         UserEntity userEntity = m_userEntityRepository.findByUserName(userName);
-        UserEntityDto userEntityDto = m_converUser.convertToEntityAttribute(userEntity);
+        UserEntityDto userEntityDto = m_convertUser.convertToEntityAttribute(userEntity);
         userEntityDto.setRoleId(userEntity.getRole().getId());
         return userEntityDto;
     }
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
         }
         UserEntity userEntity = m_userEntityRepository.findUserByUserNameAndPassWord(userName, passWord);
         if (userEntity != null){
-            UserEntityDto userEntityDto = m_converUser.convertToEntityAttribute(userEntity);
+            UserEntityDto userEntityDto = m_convertUser.convertToEntityAttribute(userEntity);
             userEntityDto.setRoleId(userEntity.getRole().getId());
             return userEntityDto;
         } else {
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
             userEntity.setPinCode(userEntityDto.getPinCode());
             userEntity.setRole(roleEntity);
             m_userEntityRepository.save(userEntity);
-            userEntityDto = m_converUser.convertToEntityAttribute(m_userEntityRepository.findById(id));
+            userEntityDto = m_convertUser.convertToEntityAttribute(m_userEntityRepository.findById(id));
             return userEntityDto;
         }
     }
