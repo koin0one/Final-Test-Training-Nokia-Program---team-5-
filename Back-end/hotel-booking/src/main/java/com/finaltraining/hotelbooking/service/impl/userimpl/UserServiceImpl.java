@@ -27,21 +27,27 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ConvertUser m_converUser;
 
+    private final UUID guest_role_id = UUID.fromString("efbfbd1f-efbf-bd05-26ef-bfbd4c2eefbf");
+
     public String hashPass(String password){
         String hashPass = DigestUtils.md5DigestAsHex(password.getBytes()).toUpperCase();
         return hashPass;
     }
 
     @Override
-    public void AddUser(UserEntityDto user) {
-        UserEntity userEntity = m_converUser.convertToDatabaseColumn(user);
+    public void AddUser(UserEntityDto userEntityDto) {
+        UserEntity userEntity = m_converUser.convertToDatabaseColumn(userEntityDto);
         if (m_userEntityRepository.findByUserName(userEntity.getUserName()) != null) {
             throw new RuntimeException("User already exists!");
         } else {
-            if (user.getPassWord().length() == 32){
-                userEntity.setPassWord(user.getPassWord());
+            if (userEntityDto.getPassWord().length() == 32){
+                userEntity.setPassWord(userEntityDto.getPassWord());
             } else {
-                userEntity.setPassWord(hashPass(user.getPassWord()));
+                userEntity.setPassWord(hashPass(userEntityDto.getPassWord()));
+            }
+            if (userEntityDto.getRoleId() == null) {
+                RoleEntity roleEntity = m_roleRepository.findById(guest_role_id);
+                userEntity.setRole(roleEntity);
             }
             m_userEntityRepository.save(userEntity);
         }
@@ -53,7 +59,9 @@ public class UserServiceImpl implements UserService {
         List<UserEntity> listUserEntity = m_userEntityRepository.findAll();
         for (UserEntity userEntity : listUserEntity){
             if (userEntity != null){
-                listUserDto.add(m_converUser.convertToEntityAttribute(userEntity));
+                UserEntityDto userEntityDto = m_converUser.convertToEntityAttribute(userEntity);
+                userEntityDto.setRoleId(userEntity.getRole().getId());
+                listUserDto.add(userEntityDto);
             }
         }
         return listUserDto;

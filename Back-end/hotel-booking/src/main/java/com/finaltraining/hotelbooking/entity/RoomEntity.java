@@ -19,6 +19,8 @@ public class RoomEntity extends BaseEntity {
     private String description;
     @Column(name = "number_of_bed")
     private Integer numberOfBed;
+    @Column(name = "status")
+    private Boolean status;
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomTypeEntity roomType;
@@ -65,6 +67,14 @@ public class RoomEntity extends BaseEntity {
 
     public void setNumberOfBed(Integer numberOfBed) {
         this.numberOfBed = numberOfBed;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public RoomTypeEntity getRoomType() {
