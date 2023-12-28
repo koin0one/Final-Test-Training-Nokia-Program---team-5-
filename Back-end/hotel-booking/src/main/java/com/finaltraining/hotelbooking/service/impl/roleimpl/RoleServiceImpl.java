@@ -37,7 +37,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleEntityDto findRoleById(UUID id) {
-        return null;
+        RoleEntity roleEntity = m_roleEntityRepository.findById(id);
+        if (roleEntity != null){
+            return m_convertRole.convertToEntityAttribute(roleEntity);
+        } else {
+            return null;
+        }
     }
 
     @Override

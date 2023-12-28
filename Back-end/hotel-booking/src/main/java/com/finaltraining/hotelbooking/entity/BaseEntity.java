@@ -10,7 +10,7 @@ public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", nullable = false, columnDefinition = "binary(32)")
+    @Column(name = "id", nullable = false)
     private UUID id;
 
     public UUID getId() {

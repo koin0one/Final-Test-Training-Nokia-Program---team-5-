@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface RoleEntityRepository extends JpaRepository<RoleEntity, Long> {
     RoleEntity findById(UUID id);
+    RoleEntity findByRoleName(String roleName);
 }

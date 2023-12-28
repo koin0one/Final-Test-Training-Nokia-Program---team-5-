@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ConvertUser m_converUser;
 
-    private final UUID guest_role_id = UUID.fromString("efbfbd1f-efbf-bd05-26ef-bfbd4c2eefbf");
+    private final String guest_role_name = "guest";
 
     public String hashPass(String password){
         String hashPass = DigestUtils.md5DigestAsHex(password.getBytes()).toUpperCase();
@@ -45,10 +45,13 @@ public class UserServiceImpl implements UserService {
             } else {
                 userEntity.setPassWord(hashPass(userEntityDto.getPassWord()));
             }
+            RoleEntity roleEntity;
             if (userEntityDto.getRoleId() == null) {
-                RoleEntity roleEntity = m_roleRepository.findById(guest_role_id);
-                userEntity.setRole(roleEntity);
+                roleEntity = m_roleRepository.findByRoleName(guest_role_name);
+            } else {
+                roleEntity = m_roleRepository.findById(userEntityDto.getRoleId());
             }
+            userEntity.setRole(roleEntity);
             m_userEntityRepository.save(userEntity);
         }
     }
