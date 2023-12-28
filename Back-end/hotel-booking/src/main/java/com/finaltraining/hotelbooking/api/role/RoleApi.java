@@ -21,7 +21,7 @@ public class RoleApi {
     public ResponseEntity addRole(@RequestBody RoleEntityDto roleEntityDto){
         try {
             m_RoleService.addRole(roleEntityDto);
-            return ResponseEntity.ok("Role is added!");
+            return ResponseEntity.ok("Role is added");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -31,7 +31,7 @@ public class RoleApi {
     public ResponseEntity findAllRole(){
         List<RoleEntityDto> roleEntityDtos = m_RoleService.findAllRole();
         if (roleEntityDtos.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("List of role is empty!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The list of roles is empty");
         } else {
             return ResponseEntity.ok(roleEntityDtos);
         }
@@ -43,7 +43,7 @@ public class RoleApi {
         if (roleEntityDto != null) {
             return ResponseEntity.ok(roleEntityDto);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Can not found role!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Role not found");
         }
     }
 }

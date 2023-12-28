@@ -1,7 +1,6 @@
 package com.finaltraining.hotelbooking.service;
 
 import com.finaltraining.hotelbooking.dto.UserEntityDto;
-import com.finaltraining.hotelbooking.entity.UserEntity;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,6 +13,8 @@ public interface UserService {
     UserEntityDto findUserById(UUID id);
 
     UserEntityDto findUserByUserName(String userName);
+
+    UserEntityDto findUserByUserNameAndPassWord(String userName, String passWord);
 
     UserEntityDto updateUserById(UserEntityDto userEntityDto);
 

@@ -32,7 +32,7 @@ public class UserApi {
     public ResponseEntity findAllUser(){
         List<UserEntityDto> userEntityDtos = m_userService.findAllUser();
         if (userEntityDtos.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("List of user is empty!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The list of users is empty");
         } else {
             return ResponseEntity.ok(userEntityDtos);
         }
@@ -48,7 +48,7 @@ public class UserApi {
                 return ResponseEntity.notFound().build();
             }
         } catch (NullPointerException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Can not found user!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 
@@ -62,7 +62,7 @@ public class UserApi {
                 return ResponseEntity.notFound().build();
             }
         } catch (NullPointerException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Can not found user!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
 

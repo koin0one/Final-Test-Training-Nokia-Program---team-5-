@@ -7,9 +7,9 @@ import com.finaltraining.hotelbooking.entity.UserEntity;
 import com.finaltraining.hotelbooking.repository.RoleEntityRepository;
 import com.finaltraining.hotelbooking.repository.UserEntityRepository;
 import com.finaltraining.hotelbooking.service.UserService;
+import com.finaltraining.hotelbooking.utils.EncodeSecret;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,27 +27,24 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ConvertUser m_converUser;
 
-    private final String guest_role_name = "guest";
+    private final String GUEST_ROLE_NAME = "guest";
 
-    public String hashPass(String password){
-        String hashPass = DigestUtils.md5DigestAsHex(password.getBytes()).toUpperCase();
-        return hashPass;
-    }
+    private final String DELETE_ERROR_MESSAGE = "This user cannot be deleted";
 
     @Override
     public void AddUser(UserEntityDto userEntityDto) {
         UserEntity userEntity = m_converUser.convertToDatabaseColumn(userEntityDto);
         if (m_userEntityRepository.findByUserName(userEntity.getUserName()) != null) {
-            throw new RuntimeException("User already exists!");
+            throw new RuntimeException("Username is already in use");
         } else {
             if (userEntityDto.getPassWord().length() == 32){
                 userEntity.setPassWord(userEntityDto.getPassWord());
             } else {
-                userEntity.setPassWord(hashPass(userEntityDto.getPassWord()));
+                userEntity.setPassWord(EncodeSecret.hashPass(userEntityDto.getPassWord()));
             }
             RoleEntity roleEntity;
             if (userEntityDto.getRoleId() == null) {
-                roleEntity = m_roleRepository.findByRoleName(guest_role_name);
+                roleEntity = m_roleRepository.findByRoleName(GUEST_ROLE_NAME);
             } else {
                 roleEntity = m_roleRepository.findById(userEntityDto.getRoleId());
             }
@@ -87,12 +84,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntityDto findUserByUserNameAndPassWord(String userName, String passWord) {
+        if (passWord.length() != 32){
+            passWord = EncodeSecret.hashPass(passWord);
+        }
+        UserEntity userEntity = m_userEntityRepository.findUserByUserNameAndPassWord(userName, passWord);
+        if (userEntity != null){
+            UserEntityDto userEntityDto = m_converUser.convertToEntityAttribute(userEntity);
+            userEntityDto.setRoleId(userEntity.getRole().getId());
+            return userEntityDto;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public UserEntityDto updateUserById(UserEntityDto userEntityDto) {
         UUID id = userEntityDto.getId();
         UserEntity userEntity = m_userEntityRepository.getById(id);
         RoleEntity roleEntity = m_roleRepository.findById(userEntityDto.getRoleId());
         if (userEntity == null) {
-            throw new RuntimeException("User is not exists!");
+            throw new RuntimeException("User not found");
         } else {
             userEntity.setFirstName(userEntityDto.getFirstName());
             userEntity.setLastName(userEntityDto.getLastName());
@@ -114,7 +126,7 @@ public class UserServiceImpl implements UserService {
         try {
             m_userEntityRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RuntimeException("Can not delete user!");
+            throw new RuntimeException(DELETE_ERROR_MESSAGE);
         }
     }
 
@@ -123,9 +135,8 @@ public class UserServiceImpl implements UserService {
         try {
             m_userEntityRepository.deleteByUserName(username);
         } catch (Exception e) {
-            throw new RuntimeException("Can not delete user!");
+            throw new RuntimeException(DELETE_ERROR_MESSAGE);
         }
     }
-
 
 }
