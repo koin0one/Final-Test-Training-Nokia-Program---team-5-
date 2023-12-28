@@ -17,10 +17,8 @@ public class HotelEntity extends BaseEntity {
     private String description;
     @Column(name = "address")
     private String address;
-    @ManyToMany(mappedBy = "hotel")
-    private Collection<RoomEntity> room;
-    @ManyToMany(mappedBy = "hotel")
-    private Collection<RoomTypeEntity> roomType;
+    @OneToMany(mappedBy = "hotel")
+    private Collection<RoomEntity> rooms;
 
     public String getHotelName() {
         return hotelName;
@@ -54,19 +52,12 @@ public class HotelEntity extends BaseEntity {
         this.address = address;
     }
 
-    public Collection<RoomEntity> getRoom() {
-        return room;
+    public Collection<RoomEntity> getRooms() {
+        return rooms;
     }
 
-    public void setRoom(Collection<RoomEntity> room) {
-        this.room = room;
+    public void setRooms(Collection<RoomEntity> rooms) {
+        this.rooms = rooms;
     }
 
-    public Collection<RoomTypeEntity> getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(Collection<RoomTypeEntity> roomType) {
-        this.roomType = roomType;
-    }
 }

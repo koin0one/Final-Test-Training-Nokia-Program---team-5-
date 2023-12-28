@@ -1,32 +1,35 @@
-package com.finaltraining.hotelbooking.entity;
+package com.finaltraining.hotelbooking.dto;
 
-import jakarta.persistence.*;
+import com.finaltraining.hotelbooking.entity.HotelEntity;
+import com.finaltraining.hotelbooking.entity.RoomTypeEntity;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.UUID;
 
-@Entity
-@Table(name = "room_entity")
-public class RoomEntity extends BaseEntity {
-    @Column(name = "room_number", nullable = false, unique = true)
+/**
+ * DTO for {@link com.finaltraining.hotelbooking.entity.RoomEntity}
+ */
+public class RoomEntityDto {
+    private UUID id;
     private Integer roomNumber;
-    @Column(name = "image_url")
     private URL imageUrl;
-    @Column(name = "facilities")
     private String facilities;
-    @Lob
-    @Column(name = "description")
     private String description;
-    @Column(name = "number_of_bed")
     private Integer numberOfBed;
-    @Column(name = "status")
     private Boolean status;
-    @ManyToOne
-    @JoinColumn(name = "room_type_id")
-    private RoomTypeEntity roomType;
-    @ManyToOne
-    @JoinColumn(name = "hotel_id")
+    private UUID hotelId;
+    private UUID roomTypeId;
     private HotelEntity hotel;
+    private RoomTypeEntity roomType;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public Integer getRoomNumber() {
         return roomNumber;
@@ -76,12 +79,20 @@ public class RoomEntity extends BaseEntity {
         this.status = status;
     }
 
-    public RoomTypeEntity getRoomType() {
-        return roomType;
+    public UUID getHotelId() {
+        return hotelId;
     }
 
-    public void setRoomType(RoomTypeEntity roomType) {
-        this.roomType = roomType;
+    public void setHotelId(UUID hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public UUID getRoomTypeId() {
+        return roomTypeId;
+    }
+
+    public void setRoomTypeId(UUID roomTypeId) {
+        this.roomTypeId = roomTypeId;
     }
 
     public HotelEntity getHotel() {
@@ -91,4 +102,13 @@ public class RoomEntity extends BaseEntity {
     public void setHotel(HotelEntity hotel) {
         this.hotel = hotel;
     }
+
+    public RoomTypeEntity getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomTypeEntity roomType) {
+        this.roomType = roomType;
+    }
+
 }
