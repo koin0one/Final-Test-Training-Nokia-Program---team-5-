@@ -1,2 +1,2 @@
 INSERT INTO `role_entity` VALUES (_binary '/\Z�\�\�I��˶��O','Member','member'),(_binary 'T?�+�K_�����2�','Administration','admin'),(_binary '\��&�L.��\0\���j@','Guest','guest');
-INSERT INTO `user_entity` VALUES (_binary '~P�S\�\�L\��@�e	','Quy Nhon',NULL,'admin@gmail.com','Admin',NULL,'Admin','827CCB0EEA8A706C4C34A16891F84E7B',NULL,NULL,'admin',_binary 'T?�+�K_�����2�');
+INSERT INTO `user_entity` VALUES (_binary '~P�S\�\�L\��@�e	','Quy Nhon',NULL,'admin@gmail.com','Admin',NULL,'Admin','21232F297A57A5A743894A0E4A801FC3',NULL,NULL,'admin',_binary 'T?�+�K_�����2�');
