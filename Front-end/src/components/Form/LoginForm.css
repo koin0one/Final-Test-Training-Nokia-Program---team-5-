@@ -1,0 +1,8 @@
+.ant-form-item-label {
+  width: 140px;
+  display: flex;
+  justify-items: flex-start;
+}
+.ant-form-item-control-input {
+  width: 90%;
+}

@@ -1,0 +1,14 @@
+.ant-modal .ant-modal-header {
+  margin: -30px -24px;
+  padding: 20px 24px;
+  background-color: #1677ff;
+}
+.ant-modal-header .ant-modal-title {
+  color: #fff;
+}
+.ant-modal .ant-modal-content button {
+  top: 10px;
+}
+.ant-modal .ant-modal-body {
+  margin-top: 50px;
+}

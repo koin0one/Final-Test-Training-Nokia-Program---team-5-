@@ -1,0 +1,25 @@
+.about-container {
+  background-color: #f0f2f5;
+}
+
+.hero-section {
+  background-color: #1890ff;
+  color: #fff;
+  padding: 80px;
+  text-align: center;
+  background-image: url('../assets/background-image.jpg');
+}
+
+.popular-hotels-section {
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.popular-hotels-section h2 {
+  margin-bottom: 20px;
+}
+
+.slick-dots .slick-dots-bottom {
+  font-size: 20px;
+  bottom: -50px;
+}
