@@ -1,5 +1,6 @@
 package com.finaltraining.hotelbooking.repository;
 
+import com.finaltraining.hotelbooking.entity.RoomEntity;
 import com.finaltraining.hotelbooking.entity.RoomTypeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -7,5 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface RoomTypeEntityRepository extends JpaRepository<RoomTypeEntity, UUID> {
+public interface RoomTypeEntityRepository extends JpaRepository<RoomTypeEntity, Long> {
+    RoomTypeEntity findById(UUID id);
 }

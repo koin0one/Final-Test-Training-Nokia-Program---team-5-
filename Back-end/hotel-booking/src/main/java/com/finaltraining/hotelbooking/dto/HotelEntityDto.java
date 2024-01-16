@@ -1,24 +1,28 @@
-package com.finaltraining.hotelbooking.entity;
+package com.finaltraining.hotelbooking.dto;
 
-import jakarta.persistence.*;
-
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Collection;
+import java.util.UUID;
 
-@Entity
-@Table(name = "hotel_entity")
-public class HotelEntity extends BaseEntity {
-    @Column(name = "hotel_name")
+/**
+ * DTO for {@link com.finaltraining.hotelbooking.entity.HotelEntity}
+ */
+public class HotelEntityDto {
+    private UUID id;
     private String hotelName;
-    @Column(name = "image_url")
     private String imageURL;
-    @Lob
-    @Column(name = "description")
     private String description;
-    @Column(name = "address")
     private String address;
-    @OneToMany(mappedBy = "hotel")
-    private Collection<RoomEntity> rooms;
+    private Collection<RoomEntityDto> rooms;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getHotelName() {
         return hotelName;
@@ -52,11 +56,11 @@ public class HotelEntity extends BaseEntity {
         this.address = address;
     }
 
-    public Collection<RoomEntity> getRooms() {
+    public Collection<RoomEntityDto> getRooms() {
         return rooms;
     }
 
-    public void setRooms(Collection<RoomEntity> rooms) {
+    public void setRooms(Collection<RoomEntityDto> rooms) {
         this.rooms = rooms;
     }
 

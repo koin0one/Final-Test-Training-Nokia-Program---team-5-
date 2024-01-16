@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface RoomEntityRepository extends JpaRepository<RoomEntity, UUID> {
+public interface RoomEntityRepository extends JpaRepository<RoomEntity, Long> {
+    RoomEntity findById (UUID id);
 }

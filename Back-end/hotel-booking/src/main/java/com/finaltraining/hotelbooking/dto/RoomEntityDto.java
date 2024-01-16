@@ -13,7 +13,7 @@ import java.util.UUID;
 public class RoomEntityDto {
     private UUID id;
     private Integer roomNumber;
-    private URL imageUrl;
+    private String imageUrl;
     private String facilities;
     private String description;
     private Integer numberOfBed;
@@ -39,11 +39,11 @@ public class RoomEntityDto {
         this.roomNumber = roomNumber;
     }
 
-    public URL getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(URL imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 

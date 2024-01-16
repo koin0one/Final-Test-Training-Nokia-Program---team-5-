@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "/rest/api", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/rest/api/user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserApi {
 
     @Autowired

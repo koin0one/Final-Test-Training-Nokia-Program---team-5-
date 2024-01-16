@@ -11,7 +11,7 @@ public class RoomEntity extends BaseEntity {
     @Column(name = "room_number", nullable = false, unique = true)
     private Integer roomNumber;
     @Column(name = "image_url")
-    private URL imageUrl;
+    private String imageUrl;
     @Column(name = "facilities")
     private String facilities;
     @Lob
@@ -36,11 +36,11 @@ public class RoomEntity extends BaseEntity {
         this.roomNumber = roomNumber;
     }
 
-    public URL getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(URL imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
